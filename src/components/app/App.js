@@ -8,9 +8,9 @@ const Main = () => {
 
 function App() {
   const todoData = [
-    { label: "Completed task4", isCompleted: true },
-    { label: "Editing task2", isCompleted: false },
-    { label: "Active task3", isCompleted: true },
+    { id: 0, label: "Completed task", isCompleted: true },
+    { id: 1, label: "Editing task2", isCompleted: false },
+    { id: 2, label: "Active task3", isCompleted: true },
   ];
 
   return (

@@ -4,8 +4,12 @@ const TodoList = ({ todos }) => {
   const elements = todos.map((item) => {
     //return <Task label={item.label} isCompleted={item.isCompleted} />;
 
+    // ЧЕрез рестуризакцию, мы получаем id, А в аргумент itemProps  добавляем все
+    // остальные свойства
+    const { id, ...itemProps } = item;
+
     // лучше использовать спред оператор
-    return <Task {...item} />;
+    return <Task key={id} {...itemProps} />;
   });
 
   return (
