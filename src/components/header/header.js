@@ -1,3 +1,5 @@
+import "./header.css";
+
 const Header = () => {
   // null - в реакте не ощибка, а просто пусто
   //  null, true, false, undefined отображаться в реакт не будут

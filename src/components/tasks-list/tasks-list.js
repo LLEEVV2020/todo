@@ -1,4 +1,5 @@
 import Task from "../task/task";
+import "./tasks-list.css";
 
 const TodoList = ({ todos }) => {
   const elements = todos.map((item) => {
