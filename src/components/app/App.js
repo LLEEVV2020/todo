@@ -1,6 +1,7 @@
 import Header from "../header/header";
 import TodoList from "../tasks-list/tasks-list";
 import Footer from "../footer/footer";
+import "./app.css";
 
 const Main = () => {
   return <section className="test">hi</section>;
