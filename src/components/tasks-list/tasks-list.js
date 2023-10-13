@@ -1,6 +1,13 @@
 import Task from "../task/task";
 
 const TodoList = ({ todos }) => {
+  const elements = todos.map((item) => {
+    //return <Task label={item.label} isCompleted={item.isCompleted} />;
+
+    // лучше использовать спред оператор
+    return <Task {...item} />;
+  });
+
   return (
     <ul className="todo-list">
       <li className="completed">
@@ -24,7 +31,7 @@ const TodoList = ({ todos }) => {
           <button className="icon icon-edit"></button>
           <button className="icon icon-destroy"></button>
         </div>
-        <input type="text" className="edit" value="Editing task" />
+        <input type="text" className="edit" value={todos[1].label} />
       </li>
       <li>
         <div className="view">
@@ -38,11 +45,7 @@ const TodoList = ({ todos }) => {
         </div>
       </li>
 
-      <Task label="Completed task" isCompleted />
-
-      <Task label="Editing task" isCompleted={false} />
-
-      <Task label="Active task" isCompleted />
+      {elements}
     </ul>
   );
 };
