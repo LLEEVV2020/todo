@@ -1,4 +1,4 @@
-import Task from "../task/task";
+import Task from "../task";
 import "./tasks-list.css";
 
 const TodoList = ({ todos }) => {

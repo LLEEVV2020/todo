@@ -1,6 +1,6 @@
-import Header from "../header/header";
-import TodoList from "../tasks-list/tasks-list";
-import Footer from "../footer/footer";
+import Header from "../header";
+import TodoList from "../tasks-list";
+import Footer from "../footer";
 import "./app.css";
 
 const Main = () => {
@@ -9,7 +9,7 @@ const Main = () => {
 
 function App() {
   const todoData = [
-    { id: 0, label: "Completed task5", isCompleted: true },
+    { id: 0, label: "Completed task3", isCompleted: true },
     { id: 1, label: "Editing task2", isCompleted: false },
     { id: 2, label: "Active task3", isCompleted: true },
   ];
