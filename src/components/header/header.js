@@ -1,3 +1,4 @@
+import NewTaskForm from "../new-task-form";
 import "./header.css";
 
 const Header = () => {
@@ -6,21 +7,12 @@ const Header = () => {
   const isNull = false;
   // РЕАКТ ЭЛЕМЕНТ,
   const head = <h1>todos</h1>;
-  const searchPanel = "What needs to be done?";
-  const searchStyle = {
-    fontSize: "24px",
-  };
 
   return (
     <header className="header">
       {isNull ? null : head}
 
-      <input
-        className="new-todo"
-        placeholder={searchPanel}
-        style={searchStyle}
-        autoFocus // autoFocus = {true}  - по умолчанию
-      />
+      <NewTaskForm />
     </header>
   );
 };

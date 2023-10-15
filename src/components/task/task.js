@@ -1,4 +1,5 @@
 import "./task.css";
+import { formatDistanceToNow } from "date-fns";
 
 const Task = ({ label, isCompleted }) => {
   // через деструлизацию в параметрах, достаём свойство
@@ -12,7 +13,9 @@ const Task = ({ label, isCompleted }) => {
         <input className="toggle" type="checkbox" />
         <label>
           <span className="description">{label}</span>
-          <span className="created">created 17 seconds ago</span>
+          <span className="created">
+            created 17 seconds ago {formatDistanceToNow(new Date(2014, 6, 2))}
+          </span>
         </label>
         <button className="icon icon-edit"></button>
         <button className="icon icon-destroy"></button>

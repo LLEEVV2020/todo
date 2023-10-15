@@ -4,7 +4,7 @@ import Footer from "../footer";
 import "./app.css";
 
 const Main = () => {
-  return <section className="test">hi</section>;
+  return <section className="test"></section>;
 };
 
 function App() {
