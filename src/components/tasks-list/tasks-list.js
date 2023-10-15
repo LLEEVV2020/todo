@@ -1,7 +1,7 @@
 import Task from "../task";
 import "./tasks-list.css";
 
-const TodoList = ({ todos }) => {
+const TaskList = ({ todos }) => {
   const elements = todos.map((item) => {
     //return <Task label={item.label} isCompleted={item.isCompleted} />;
 
@@ -55,4 +55,4 @@ const TodoList = ({ todos }) => {
   );
 };
 
-export default TodoList;
+export default TaskList;

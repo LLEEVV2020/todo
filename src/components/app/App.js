@@ -1,5 +1,5 @@
 import Header from "../header";
-import TodoList from "../tasks-list";
+import TaskList from "../tasks-list";
 import Footer from "../footer";
 import "./app.css";
 
@@ -18,7 +18,7 @@ function App() {
     <section className="todoapp">
       <Header />
       <section className="main">
-        <TodoList todos={todoData} />
+        <TaskList todos={todoData} />
         <Footer />
       </section>
 
