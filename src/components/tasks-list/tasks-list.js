@@ -7,10 +7,13 @@ const TaskList = ({ todos }) => {
 
     // ЧЕрез рестуризакцию, мы получаем id, А в аргумент itemProps  добавляем все
     // остальные свойства
-    const { id, ...itemProps } = item;
+    //const { id, ...itemProps } = item;
 
     // лучше использовать спред оператор
-    return <Task key={id} {...itemProps} />;
+    //return <Task key={id} {...itemProps} />;
+
+    const { ...itemProps } = item;
+    return <Task key={item.id} {...itemProps} />;
   });
 
   return (
