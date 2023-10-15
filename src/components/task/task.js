@@ -3,23 +3,46 @@ import "./task.css";
 import { formatDistanceToNow } from "date-fns";
 
 class Task extends Component {
-  taskStatusChangeHandler() {
+  /*constructor() {
+    super();
+
+    this.state = {
+      done: false,
+    };
+  }*/
+
+  state = {
+    done: false,
+  };
+
+  taskStatusChangeHandler = () => {
     console.log(`Название: ${this.props.label}`);
-  }
+    /*this.setState({
+      done: true,
+    });*/
+    this.setState((state) => {
+      return {
+        done: !state.done,
+      };
+    });
+  };
 
   render() {
     // через деструлизацию  достаём свойство.
     // свойство можно передавать любые, строки, буллевые, мыссивы, объекты
     const { id, label, isCompleted } = this.props;
-
-    const classLi = isCompleted ? "completed" : "";
+    let classLi = isCompleted ? "completed" : "";
+    const { done } = this.state;
+    if (done) {
+      classLi = "completed";
+    }
 
     return (
       <li className={classLi}>
         <div className="view">
           <input
             id={`toggle-${id}`}
-            onChange={this.taskStatusChangeHandler.bind(this)}
+            onChange={this.taskStatusChangeHandler}
             className="toggle"
             type="checkbox"
           />

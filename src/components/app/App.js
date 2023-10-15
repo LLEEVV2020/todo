@@ -9,7 +9,7 @@ const Main = () => {
 
 function App() {
   const todoData = [
-    { id: 0, label: "Completed task3", isCompleted: true },
+    { id: 0, label: "Completed task3", isCompleted: false },
     { id: 1, label: "Editing task2", isCompleted: false },
     { id: 2, label: "Active task3", isCompleted: true },
   ];
