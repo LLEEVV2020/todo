@@ -30,7 +30,7 @@ class Task extends Component {
   render() {
     // через деструлизацию  достаём свойство.
     // свойство можно передавать любые, строки, буллевые, мыссивы, объекты
-    const { id, label, isCompleted } = this.props;
+    const { id, label, isCompleted, onDeleted } = this.props;
     let classLi = isCompleted ? "completed" : "";
     const { done } = this.state;
     if (done) {
@@ -54,7 +54,7 @@ class Task extends Component {
             </span>
           </label>
           <button className="icon icon-edit"></button>
-          <button className="icon icon-destroy"></button>
+          <button className="icon icon-destroy" onClick={onDeleted}></button>
         </div>
       </li>
     );

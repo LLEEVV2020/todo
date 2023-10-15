@@ -18,7 +18,7 @@ function App() {
     <section className="todoapp">
       <Header />
       <section className="main">
-        <TaskList todos={todoData} />
+        <TaskList todos={todoData} onDeleted={(id) => console.log(id)} />
         <Footer />
       </section>
 

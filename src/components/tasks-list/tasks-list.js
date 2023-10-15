@@ -1,7 +1,7 @@
 import Task from "../task";
 import "./tasks-list.css";
 
-const TaskList = ({ todos }) => {
+const TaskList = ({ todos, onDeleted }) => {
   const elements = todos.map((item) => {
     //return <Task label={item.label} isCompleted={item.isCompleted} />;
 
@@ -13,7 +13,9 @@ const TaskList = ({ todos }) => {
     //return <Task key={id} {...itemProps} />;
 
     const { ...itemProps } = item;
-    return <Task key={item.id} {...itemProps} />;
+    return (
+      <Task key={item.id} {...itemProps} onDeleted={() => onDeleted(item.id)} />
+    );
   });
 
   return (
