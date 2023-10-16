@@ -24,10 +24,7 @@ class App extends Component {
 
       console.log(idx, "ttt");
 
-      const before = todoData.slice(0, idx);
-      const after = todoData.slice(idx + 1);
-
-      const newArray = [...before, ...after];
+      const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
 
       return {
         todoData: newArray,
