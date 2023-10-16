@@ -24,7 +24,7 @@ const TaskList = ({ todos, onDeleted }) => {
         <div className="view">
           <input className="toggle" type="checkbox" />
           <label>
-            <span className="description">{todos[0].label}</span>
+            <span className="description">первый</span>
             <span className="created">created 17 seconds ago</span>
           </label>
           <button className="icon icon-edit"></button>
@@ -35,19 +35,19 @@ const TaskList = ({ todos, onDeleted }) => {
         <div className="view">
           <input className="toggle" type="checkbox" />
           <label>
-            <span className="description">{todos[1].label}</span>
+            <span className="description">второй</span>
             <span className="created">created 5 minutes ago</span>
           </label>
           <button className="icon icon-edit"></button>
           <button className="icon icon-destroy"></button>
         </div>
-        <input type="text" className="edit" value={todos[1].label} />
+        <input type="text" className="edit" value="второй" />
       </li>
       <li>
         <div className="view">
           <input className="toggle" type="checkbox" />
           <label>
-            <span className="description">{todos[2].label}</span>
+            <span className="description">третий</span>
             <span className="created">created 5 minutes ago</span>
           </label>
           <button className="icon icon-edit"></button>
