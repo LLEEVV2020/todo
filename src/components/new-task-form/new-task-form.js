@@ -1,19 +1,40 @@
+import { Component } from "react";
 import "./new-task-form.css";
 
-const NewTaskForm = () => {
-  const searchPanel = "What needs to be done?";
-  const searchStyle = {
-    fontSize: "24px",
-  };
+class NewTaskForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: "What needs to be done?",
+      // таким способом можно длбавить стили
+      searchStyle: {
+        fontSize: "25px",
+      },
+    };
+  }
 
-  return (
-    <input
-      className="new-todo"
-      placeholder={searchPanel}
-      style={searchStyle}
-      autoFocus // autoFocus = {true}  - по умолчанию
-    />
-  );
-};
+  changeValue(newValue) {
+    this.setState({ value: newValue });
+  }
+
+  render() {
+    return (
+      <input
+        className="new-todo"
+        placeholder="What needs to be done?"
+        autoFocus
+        value={this.state.value}
+        style={this.state.searchStyle}
+        onKeyDown={(evt) => {
+          if (evt.key === "Enter") {
+            this.props.onTaskAdd(this.state.value);
+            this.changeValue("");
+          }
+        }}
+        onChange={(evt) => this.changeValue(evt.target.value)}
+      />
+    );
+  }
+}
 
 export default NewTaskForm;

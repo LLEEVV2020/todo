@@ -17,6 +17,7 @@ class App extends Component {
       { id: 2, label: "Active task3", isCompleted: true },
     ],
   };
+  minID = 100;
 
   deleteTask = (id) => {
     this.setState(({ todoData }) => {
@@ -32,10 +33,28 @@ class App extends Component {
     });
   };
 
+  addTask = (text) => {
+    console.log("Added", text, this.minID++);
+
+    const newTask = {
+      id: this.minID++,
+      isCompleted: false,
+      label: text,
+    };
+
+    this.setState(({ todoData }) => {
+      const newArray = [...todoData, newTask];
+
+      return {
+        todoData: newArray,
+      };
+    });
+  };
+
   render() {
     return (
       <section className="todoapp">
-        <Header />
+        <Header onTaskAdd={this.addTask} />
         <section className="main">
           <TaskList todos={this.state.todoData} onDeleted={this.deleteTask} />
           <Footer />
