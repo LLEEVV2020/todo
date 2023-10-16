@@ -11,38 +11,33 @@ class Task extends Component {
     };
   }*/
 
-  state = {
-    done: false,
-  };
-
-  taskStatusChangeHandler = () => {
+  /*taskStatusChangeHandler = () => {
     console.log(`Название: ${this.props.label}`);
-    /*this.setState({
-      done: true,
-    });*/
+    
     this.setState((state) => {
       return {
         done: !state.done,
       };
     });
-  };
+  };*/
 
   render() {
     // через деструлизацию  достаём свойство.
     // свойство можно передавать любые, строки, буллевые, мыссивы, объекты
-    const { id, label, isCompleted, onDeleted } = this.props;
+    const { id, label, isCompleted, onDeleted, onTaskStatusToggle } =
+      this.props;
     let classLi = isCompleted ? "completed" : "";
-    const { done } = this.state;
+    /*const { done } = this.state;
     if (done) {
       classLi = "completed";
-    }
+    }*/
 
     return (
       <li className={classLi}>
         <div className="view">
           <input
             id={`toggle-${id}`}
-            onChange={this.taskStatusChangeHandler}
+            onChange={onTaskStatusToggle}
             className="toggle"
             type="checkbox"
           />

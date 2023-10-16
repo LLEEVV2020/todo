@@ -1,7 +1,7 @@
 import Task from "../task";
 import "./tasks-list.css";
 
-const TaskList = ({ todos, onDeleted }) => {
+const TaskList = ({ todos, onDeleted, onTaskStatusToggle }) => {
   const elements = todos.map((item) => {
     //return <Task label={item.label} isCompleted={item.isCompleted} />;
 
@@ -14,7 +14,12 @@ const TaskList = ({ todos, onDeleted }) => {
 
     const { ...itemProps } = item;
     return (
-      <Task key={item.id} {...itemProps} onDeleted={() => onDeleted(item.id)} />
+      <Task
+        key={item.id}
+        {...itemProps}
+        onDeleted={() => onDeleted(item.id)}
+        onTaskStatusToggle={() => onTaskStatusToggle(item.id)}
+      />
     );
   });
 
