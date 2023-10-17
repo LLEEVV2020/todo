@@ -10,10 +10,10 @@ class TasksFilter extends Component {
   filterChangeHandler = (evt) => {
     const filterName = evt.currentTarget.dataset.filter;
     if (filterName === this.props.filter) {
-      console.log("dddddd", evt.currentTarget.dataset.filter);
+      //console.log("dddddd", evt.currentTarget.dataset.filter);
       return;
     }
-    console.log("hhhhhh", evt.currentTarget.dataset.filter);
+    //console.log("hhhhhh", evt.currentTarget.dataset.filter);
     this.setState(() => ({ filter: filterName }));
     this.props.onFilterChange(filterName);
   };

@@ -66,7 +66,7 @@ class App extends Component {
   };
 
   toggleTaskStatus = (id) => {
-    console.log("costoianie", id);
+    //console.log("costoianie", id);
 
     /*const taskIndex = this.state.todoData.findIndex((el) => el.id === id);
 
@@ -127,7 +127,7 @@ class App extends Component {
 
   render() {
     const filteredTasks = this.getFilteredTasks();
-    console.log(filteredTasks);
+    // console.log(filteredTasks);
 
     return (
       <section className="todoapp">
