@@ -23,9 +23,13 @@ const TaskList = ({ todos, onDeleted, onTaskStatusToggle }) => {
     );
   });
 
-  return (
-    <ul className="todo-list">
-      <li className="completed">
+  return <ul className="todo-list">{elements}</ul>;
+};
+
+export default TaskList;
+
+/*
+<li className="completed">
         <div className="view">
           <input className="toggle" type="checkbox" />
           <label>
@@ -60,9 +64,4 @@ const TaskList = ({ todos, onDeleted, onTaskStatusToggle }) => {
         </div>
       </li>
 
-      {elements}
-    </ul>
-  );
-};
-
-export default TaskList;
+      */

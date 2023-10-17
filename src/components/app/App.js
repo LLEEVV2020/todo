@@ -4,6 +4,7 @@ import Header from "../header";
 import TaskList from "../tasks-list";
 import Footer from "../footer";
 import "./app.css";
+import { Filter } from "../../const";
 
 const Main = () => {
   return <section className="test"></section>;
@@ -20,6 +21,7 @@ class App extends Component {
       this.createTask("Editing task2"),
       this.createTask("Active task3", true),
     ],
+    filter: Filter.All,
   };
 
   createTask(label, isCompleted = false) {
@@ -45,7 +47,7 @@ class App extends Component {
   };
 
   addTask = (text) => {
-    console.log("Added", text, this.minID++);
+    //console.log("Added", text, this.minID++);
 
     /*const newTask = {
       id: this.minID++,
@@ -65,6 +67,42 @@ class App extends Component {
 
   toggleTaskStatus = (id) => {
     console.log("costoianie", id);
+
+    /*const taskIndex = this.state.todoData.findIndex((el) => el.id === id);
+
+    const task = this.state.todoData[taskIndex];
+
+    this.setState(({ todoData }) => {
+      const newTask = { ...task, isCompleted: !task.isCompleted };
+
+      return {
+        todoData: [
+          ...todoData.slice(0, taskIndex),
+          newTask,
+          ...todoData.slice(taskIndex + 1),
+        ],
+      };
+    });*/
+
+    this.setState(({ todoData }) => {
+      return {
+        todoData: this.toggleProperty(todoData, id, "isCompleted"),
+      };
+    });
+  };
+
+  toggleProperty(arr, id, propName) {
+    const taskIndex = arr.findIndex((el) => el.id === id);
+
+    const task = arr[taskIndex];
+
+    const newTask = { ...task, [propName]: !task[propName] };
+    //console.log("yyyyyyyfffff", id);
+    return [...arr.slice(0, taskIndex), newTask, ...arr.slice(taskIndex + 1)];
+  }
+
+  changeFilter = (filterName) => {
+    this.setState(() => ({ filter: filterName }));
   };
 
   render() {
@@ -77,7 +115,7 @@ class App extends Component {
             onDeleted={this.deleteTask}
             onTaskStatusToggle={this.toggleTaskStatus}
           />
-          <Footer />
+          <Footer todoData={this.state.todoData} filter={this.state.filter} />
         </section>
 
         <Main items={["test1", "tesr2"]} />
