@@ -105,13 +105,36 @@ class App extends Component {
     this.setState(() => ({ filter: filterName }));
   };
 
+  getFilteredTasks() {
+    switch (this.state.filter) {
+      case Filter.All:
+        return this.state.todoData;
+      case Filter.Active:
+        return this.state.todoData.filter((task) => !task.isCompleted);
+      case Filter.Completed:
+        return this.state.todoData.filter((task) => task.isCompleted);
+      default:
+        return this.state.todoData;
+    }
+  }
+  removeCompletedTasks = () => {
+    this.setState(({ todoData }) => {
+      return {
+        todoData: todoData.filter((el) => !el.isCompleted),
+      };
+    });
+  };
+
   render() {
+    const filteredTasks = this.getFilteredTasks();
+    console.log(filteredTasks);
+
     return (
       <section className="todoapp">
         <Header onTaskAdd={this.addTask} />
         <section className="main">
           <TaskList
-            todos={this.state.todoData}
+            todos={filteredTasks}
             onDeleted={this.deleteTask}
             onTaskStatusToggle={this.toggleTaskStatus}
           />
@@ -119,6 +142,7 @@ class App extends Component {
             todoData={this.state.todoData}
             onFilterChange={this.changeFilter}
             filter={this.state.filter}
+            onClearCompleted={this.removeCompletedTasks}
           />
         </section>
 
