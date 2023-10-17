@@ -115,7 +115,11 @@ class App extends Component {
             onDeleted={this.deleteTask}
             onTaskStatusToggle={this.toggleTaskStatus}
           />
-          <Footer todoData={this.state.todoData} filter={this.state.filter} />
+          <Footer
+            todoData={this.state.todoData}
+            onFilterChange={this.changeFilter}
+            filter={this.state.filter}
+          />
         </section>
 
         <Main items={["test1", "tesr2"]} />
