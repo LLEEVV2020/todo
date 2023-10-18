@@ -140,7 +140,7 @@ class App extends Component {
         <Header onTaskAdd={this.addTask} />
         <section className="main">
           <TaskList
-            todos={filteredTasks}
+            tasks={filteredTasks}
             onDeleted={this.deleteTask}
             onTaskStatusToggle={this.toggleTaskStatus}
           />

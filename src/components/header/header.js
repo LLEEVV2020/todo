@@ -6,7 +6,7 @@ const Header = ({ onTaskAdd }) => {
   //  null, true, false, undefined отображаться в реакт не будут
   const isNull = false;
   // РЕАКТ ЭЛЕМЕНТ,
-  const head = <h1>todos</h1>;
+  const head = <h1>tasks</h1>;
 
   return (
     <header className="header">

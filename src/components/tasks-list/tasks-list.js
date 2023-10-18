@@ -1,8 +1,8 @@
 import Task from "../task";
 import "./tasks-list.css";
 
-const TaskList = ({ todos, onDeleted, onTaskStatusToggle }) => {
-  const elements = todos.map((item) => {
+const TaskList = ({ tasks, onDeleted, onTaskStatusToggle }) => {
+  const elements = tasks.map((item) => {
     //return <Task label={item.label} isCompleted={item.isCompleted} />;
 
     // ЧЕрез рестуризакцию, мы получаем id, А в аргумент itemProps  добавляем все
