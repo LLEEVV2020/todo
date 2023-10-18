@@ -2,12 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 
 import App from "./components/app";
-import { Filter } from "./const";
-// https://platform.kata.academy/user/courses/3/1/3/7
+
+const initialTasks = [
+  { id: 0, label: "Completed task3", isCompleted: false },
+  { id: 1, label: "Editing task2", isCompleted: false },
+  { id: 2, label: "Active task3", isCompleted: true },
+];
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <App initialTasks={initialTasks} />
   </React.StrictMode>
 );

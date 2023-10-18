@@ -1,8 +1,8 @@
 import TasksFilter from "../tasks-filter";
 import "./footer.css";
 
-const Footer = ({ todoData, filter, onFilterChange, onClearCompleted }) => {
-  const uncompletedTasks = todoData.filter((el) => !el.isCompleted);
+const Footer = ({ tasksData, filter, onFilterChange, onClearCompleted }) => {
+  const uncompletedTasks = tasksData.filter((el) => !el.isCompleted);
 
   return (
     <footer className="footer">

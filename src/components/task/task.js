@@ -2,14 +2,19 @@ import React, { Component } from "react";
 import "./task.css";
 import { formatDistanceToNow } from "date-fns";
 
+const ClassName = {
+  COMPLETED: "completed",
+  EDITING: "editing",
+};
+
 class Task extends Component {
-  /*constructor() {
+  constructor() {
     super();
 
     this.state = {
-      done: false,
+      //label: false,
     };
-  }*/
+  }
 
   /*taskStatusChangeHandler = () => {
     console.log(`Название: ${this.props.label}`);
@@ -33,13 +38,14 @@ class Task extends Component {
     }*/
 
     return (
-      <li className={classLi}>
+      <li className={`${classLi} `}>
         <div className="view">
           <input
             id={`toggle-${id}`}
             onChange={onTaskStatusToggle}
             className="toggle"
             type="checkbox"
+            defaultChecked={isCompleted}
           />
           <label htmlFor={`toggle-${id}`}>
             <span className="description">{label}</span>

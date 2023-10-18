@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import Header from "../header";
 import TaskList from "../tasks-list";
@@ -15,14 +16,13 @@ class App extends Component {
     super(props);
 
     this.state = {
-      todoData: [
-        /*{ id: 0, label: "Completed task3", isCompleted: false },
-        { id: 1, label: "Editing task2", isCompleted: false },
-        { id: 2, label: "Active task3", isCompleted: true },*/
+      /*tasksData: [
+       
         this.createTask("Completed task3"),
         this.createTask("Editing task2"),
         this.createTask("Active task3", true),
-      ],
+      ],*/
+      tasksData: this.props.initialTasks,
       filter: this.props.filter,
     };
   }
@@ -36,15 +36,18 @@ class App extends Component {
   }
 
   deleteTask = (id) => {
-    this.setState(({ todoData }) => {
-      const idx = todoData.findIndex((el) => el.id === id);
+    this.setState(({ tasksData }) => {
+      const idx = tasksData.findIndex((el) => el.id === id);
 
       console.log(idx, "ttt");
 
-      const newArray = [...todoData.slice(0, idx), ...todoData.slice(idx + 1)];
+      const newArray = [
+        ...tasksData.slice(0, idx),
+        ...tasksData.slice(idx + 1),
+      ];
 
       return {
-        todoData: newArray,
+        tasksData: newArray,
       };
     });
   };
@@ -59,11 +62,11 @@ class App extends Component {
     };*/
     const newTask = this.createTask(text);
 
-    this.setState(({ todoData }) => {
-      const newArray = [...todoData, newTask];
+    this.setState(({ tasksData }) => {
+      const newArray = [...tasksData, newTask];
 
       return {
-        todoData: newArray,
+        tasksData: newArray,
       };
     });
   };
@@ -71,25 +74,25 @@ class App extends Component {
   toggleTaskStatus = (id) => {
     //console.log("costoianie", id);
 
-    /*const taskIndex = this.state.todoData.findIndex((el) => el.id === id);
+    /*const taskIndex = this.state.tasksData.findIndex((el) => el.id === id);
 
-    const task = this.state.todoData[taskIndex];
+    const task = this.state.tasksData[taskIndex];
 
-    this.setState(({ todoData }) => {
+    this.setState(({ tasksData }) => {
       const newTask = { ...task, isCompleted: !task.isCompleted };
 
       return {
-        todoData: [
-          ...todoData.slice(0, taskIndex),
+        tasksData: [
+          ...tasksData.slice(0, taskIndex),
           newTask,
-          ...todoData.slice(taskIndex + 1),
+          ...tasksData.slice(taskIndex + 1),
         ],
       };
     });*/
 
-    this.setState(({ todoData }) => {
+    this.setState(({ tasksData }) => {
       return {
-        todoData: this.toggleProperty(todoData, id, "isCompleted"),
+        tasksData: this.toggleProperty(tasksData, id, "isCompleted"),
       };
     });
   };
@@ -111,19 +114,19 @@ class App extends Component {
   getFilteredTasks() {
     switch (this.state.filter) {
       case Filter.All:
-        return this.state.todoData;
+        return this.state.tasksData;
       case Filter.Active:
-        return this.state.todoData.filter((task) => !task.isCompleted);
+        return this.state.tasksData.filter((task) => !task.isCompleted);
       case Filter.Completed:
-        return this.state.todoData.filter((task) => task.isCompleted);
+        return this.state.tasksData.filter((task) => task.isCompleted);
       default:
-        return this.state.todoData;
+        return this.state.tasksData;
     }
   }
   removeCompletedTasks = () => {
-    this.setState(({ todoData }) => {
+    this.setState(({ tasksData }) => {
       return {
-        todoData: todoData.filter((el) => !el.isCompleted),
+        tasksData: tasksData.filter((el) => !el.isCompleted),
       };
     });
   };
@@ -142,7 +145,7 @@ class App extends Component {
             onTaskStatusToggle={this.toggleTaskStatus}
           />
           <Footer
-            todoData={this.state.todoData}
+            tasksData={this.state.tasksData}
             onFilterChange={this.changeFilter}
             filter={this.state.filter}
             onClearCompleted={this.removeCompletedTasks}
@@ -158,7 +161,9 @@ class App extends Component {
 App.defaultProps = {
   //initialTasks: [],
   filter: Filter.All,
-  trtesr: "hhhh",
+};
+App.propTypes = {
+  initialTasks: PropTypes.arrayOf(PropTypes.object),
 };
 
 export default App;
