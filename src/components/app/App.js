@@ -5,24 +5,27 @@ import TaskList from "../tasks-list";
 import Footer from "../footer";
 import "./app.css";
 import { Filter } from "../../const";
-
 const Main = () => {
   return <section className="test"></section>;
 };
 
 class App extends Component {
   minID = 100;
-  state = {
-    todoData: [
-      /*{ id: 0, label: "Completed task3", isCompleted: false },
-      { id: 1, label: "Editing task2", isCompleted: false },
-      { id: 2, label: "Active task3", isCompleted: true },*/
-      this.createTask("Completed task3"),
-      this.createTask("Editing task2"),
-      this.createTask("Active task3", true),
-    ],
-    filter: Filter.All,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      todoData: [
+        /*{ id: 0, label: "Completed task3", isCompleted: false },
+        { id: 1, label: "Editing task2", isCompleted: false },
+        { id: 2, label: "Active task3", isCompleted: true },*/
+        this.createTask("Completed task3"),
+        this.createTask("Editing task2"),
+        this.createTask("Active task3", true),
+      ],
+      filter: this.props.filter,
+    };
+  }
 
   createTask(label, isCompleted = false) {
     return {
@@ -151,5 +154,11 @@ class App extends Component {
     );
   }
 }
+
+App.defaultProps = {
+  //initialTasks: [],
+  filter: Filter.All,
+  trtesr: "hhhh",
+};
 
 export default App;

@@ -5,7 +5,7 @@ class NewTaskForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "What needs to be done?",
+      value: "",
       // таким способом можно длбавить стили
       searchStyle: {
         fontSize: "25px",
