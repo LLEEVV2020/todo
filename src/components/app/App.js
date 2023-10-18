@@ -107,6 +107,23 @@ class App extends Component {
     return [...arr.slice(0, taskIndex), newTask, ...arr.slice(taskIndex + 1)];
   }
 
+  changeTaskText = (id, newText) => {
+    const taskIndex = this.state.tasksData.findIndex((el) => el.id === id);
+    const task = this.state.tasksData[taskIndex];
+    if (!task) throw new Error();
+
+    this.setState(({ tasksData }) => {
+      const newTask = { ...task, label: newText };
+      return {
+        tasksData: [
+          ...tasksData.slice(0, taskIndex),
+          newTask,
+          ...tasksData.slice(taskIndex + 1),
+        ],
+      };
+    });
+  };
+
   changeFilter = (filterName) => {
     this.setState(() => ({ filter: filterName }));
   };
@@ -143,6 +160,7 @@ class App extends Component {
             tasks={filteredTasks}
             onDeleted={this.deleteTask}
             onTaskStatusToggle={this.toggleTaskStatus}
+            onTaskStatusChange={this.changeTaskText}
           />
           <Footer
             tasksData={this.state.tasksData}

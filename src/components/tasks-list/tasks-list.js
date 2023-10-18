@@ -1,8 +1,13 @@
 import Task from "../task";
 import "./tasks-list.css";
 
-const TaskList = ({ tasks, onDeleted, onTaskStatusToggle }) => {
-  const elements = tasks.map((item) => {
+const TaskList = ({
+  tasks,
+  onDeleted,
+  onTaskStatusToggle,
+  onTaskStatusChange,
+}) => {
+  const elements = tasks.map((task) => {
     //return <Task label={item.label} isCompleted={item.isCompleted} />;
 
     // ЧЕрез рестуризакцию, мы получаем id, А в аргумент itemProps  добавляем все
@@ -12,13 +17,15 @@ const TaskList = ({ tasks, onDeleted, onTaskStatusToggle }) => {
     // лучше использовать спред оператор
     //return <Task key={id} {...itemProps} />;
 
-    const { ...itemProps } = item;
+    //const { ...itemProps } = task;
     return (
       <Task
-        key={item.id}
-        {...itemProps}
-        onDeleted={() => onDeleted(item.id)}
-        onTaskStatusToggle={() => onTaskStatusToggle(item.id)}
+        key={task.id}
+        // {...itemProps}
+        task={task}
+        onDeleted={() => onDeleted(task.id)}
+        onTaskStatusToggle={() => onTaskStatusToggle(task.id)}
+        onTextChange={onTaskStatusChange}
       />
     );
   });
