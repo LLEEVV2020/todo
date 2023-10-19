@@ -57,7 +57,7 @@ class Task extends Component {
     // свойство можно передавать любые, строки, буллевые, мыссивы, объекты
     const { task, onDeleted, onTaskStatusToggle } = this.props;
 
-    const { id, label, isCompleted } = task;
+    const { id, label, isCompleted, created } = task;
 
     let classCompleted = isCompleted ? "completed" : "";
     let classisEditing = this.state.isEditing ? "editing" : "";
@@ -89,8 +89,7 @@ class Task extends Component {
           <label htmlFor={`toggle-${id}`}>
             <span className="description">{label}</span>
             <span className="created">
-              created 17 seconds ago //{" "}
-              {formatDistanceToNow(new Date(2014, 6, 2))}
+              created {formatDistanceToNow(created)} ago
             </span>
           </label>
           <button

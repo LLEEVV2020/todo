@@ -4,9 +4,24 @@ import ReactDOM from "react-dom/client";
 import App from "./components/app";
 
 const initialTasks = [
-  { id: 0, label: "Completed task3", isCompleted: false },
-  { id: 1, label: "Editing task2", isCompleted: false },
-  { id: 2, label: "Active task3", isCompleted: true },
+  {
+    id: 0,
+    label: "Web Core",
+    isCompleted: true,
+    created: new Date(2023, 8, 2, 10, 5),
+  },
+  {
+    id: 1,
+    label: "JS Core",
+    isCompleted: true,
+    created: new Date(2023, 9, 3, 10, 5),
+  },
+  {
+    id: 2,
+    label: "React",
+    isCompleted: false,
+    created: new Date(2023, 9, 19, 13, 26),
+  },
 ];
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

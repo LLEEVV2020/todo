@@ -6,9 +6,6 @@ import TaskList from "../tasks-list";
 import Footer from "../footer";
 import "./app.css";
 import { Filter } from "../../const";
-const Main = () => {
-  return <section className="test"></section>;
-};
 
 class App extends Component {
   minID = 100;
@@ -32,6 +29,7 @@ class App extends Component {
       id: this.minID++,
       label,
       isCompleted: isCompleted,
+      created: new Date(),
     };
   }
 
@@ -169,8 +167,6 @@ class App extends Component {
             onClearCompleted={this.removeCompletedTasks}
           />
         </section>
-
-        <Main items={["test1", "tesr2"]} />
       </section>
     );
   }
