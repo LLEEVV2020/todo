@@ -13,12 +13,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      /*tasksData: [
-       
-        this.createTask("Completed task3"),
-        this.createTask("Editing task2"),
-        this.createTask("Active task3", true),
-      ],*/
       tasksData: this.props.initialTasks,
       filter: this.props.filter,
     };
@@ -51,13 +45,6 @@ class App extends Component {
   };
 
   addTask = (text) => {
-    //console.log("Added", text, this.minID++);
-
-    /*const newTask = {
-      id: this.minID++,
-      isCompleted: false,
-      label: text,
-    };*/
     const newTask = this.createTask(text);
 
     this.setState(({ tasksData }) => {
@@ -70,24 +57,6 @@ class App extends Component {
   };
 
   toggleTaskStatus = (id) => {
-    //console.log("costoianie", id);
-
-    /*const taskIndex = this.state.tasksData.findIndex((el) => el.id === id);
-
-    const task = this.state.tasksData[taskIndex];
-
-    this.setState(({ tasksData }) => {
-      const newTask = { ...task, isCompleted: !task.isCompleted };
-
-      return {
-        tasksData: [
-          ...tasksData.slice(0, taskIndex),
-          newTask,
-          ...tasksData.slice(taskIndex + 1),
-        ],
-      };
-    });*/
-
     this.setState(({ tasksData }) => {
       return {
         tasksData: this.toggleProperty(tasksData, id, "isCompleted"),
@@ -101,7 +70,7 @@ class App extends Component {
     const task = arr[taskIndex];
 
     const newTask = { ...task, [propName]: !task[propName] };
-    //console.log("yyyyyyyfffff", id);
+
     return [...arr.slice(0, taskIndex), newTask, ...arr.slice(taskIndex + 1)];
   }
 
@@ -148,7 +117,6 @@ class App extends Component {
 
   render() {
     const filteredTasks = this.getFilteredTasks();
-    // console.log(filteredTasks);
 
     return (
       <section className="todoapp">
@@ -173,7 +141,7 @@ class App extends Component {
 }
 
 App.defaultProps = {
-  //initialTasks: [],
+  initialTasks: [],
   filter: Filter.All,
 };
 App.propTypes = {

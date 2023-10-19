@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import "./task.css";
 import { formatDistanceToNow } from "date-fns";
 
-const ClassName = {
-  COMPLETED: "completed",
-  EDITING: "editing",
-};
-
 class Task extends Component {
   constructor(props) {
     super(props);
@@ -16,16 +11,6 @@ class Task extends Component {
       label: this.props.task.label,
     };
   }
-
-  /*taskStatusChangeHandler = () => {
-    console.log(`Название: ${this.props.label}`);
-    
-    this.setState((state) => {
-      return {
-        done: !state.done,
-      };
-    });
-  };*/
 
   /**при нажатии на кнопку редактировать, навешивается класс "editing"*/
   editButtonClickHandler = () => {
@@ -62,10 +47,6 @@ class Task extends Component {
     let classCompleted = isCompleted ? "completed" : "";
     let classisEditing = this.state.isEditing ? "editing" : "";
 
-    /*const { done } = this.state;
-    if (done) {
-      classLi = "completed";
-    }*/
     let inputHandler = this.state.isEditing ? (
       <input
         type="text"
