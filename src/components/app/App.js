@@ -31,8 +31,6 @@ class App extends Component {
     this.setState(({ tasksData }) => {
       const idx = tasksData.findIndex((el) => el.id === id);
 
-      console.log(idx, "ttt");
-
       const newArray = [
         ...tasksData.slice(0, idx),
         ...tasksData.slice(idx + 1),

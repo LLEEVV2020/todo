@@ -32,7 +32,6 @@ class Task extends Component {
     }
   };
   taskTextChangeHandler = (evt) => {
-    console.log("saaaaaa");
     const input = evt.currentTarget;
     this.setState(() => ({ label: input.value }));
   };
