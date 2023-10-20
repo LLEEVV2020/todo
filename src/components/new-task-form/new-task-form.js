@@ -1,5 +1,5 @@
-import { Component } from 'react'
-import './new-task-form.css'
+import { Component } from 'react';
+import './new-task-form.css';
 
 class NewTaskForm extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class NewTaskForm extends Component {
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             this.props.onTaskAdd(this.state.value);
-            this.changeValue('')
+            this.changeValue('');
           }
         }}
         onChange={(e) => this.changeValue(e.target.value)}

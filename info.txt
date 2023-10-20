@@ -17,3 +17,5 @@ npm install eslint-plugin-prettier --save-dev
 
 
 npm  run lint
+npm  run lint:fix
+npm  run format

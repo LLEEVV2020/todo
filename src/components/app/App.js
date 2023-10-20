@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import Header from "../header";
-import TaskList from "../tasks-list";
-import Footer from "../footer";
-import "./app.css";
-import { Filter } from "../../const";
+import Header from '../header';
+import TaskList from '../tasks-list';
+import Footer from '../footer';
+import './app.css';
+import { Filter } from '../../const';
 
 class App extends Component {
   minID = 100;
@@ -31,10 +31,7 @@ class App extends Component {
     this.setState(({ tasksData }) => {
       const idx = tasksData.findIndex((el) => el.id === id);
 
-      const newArray = [
-        ...tasksData.slice(0, idx),
-        ...tasksData.slice(idx + 1),
-      ];
+      const newArray = [...tasksData.slice(0, idx), ...tasksData.slice(idx + 1)];
 
       return {
         tasksData: newArray,
@@ -57,7 +54,7 @@ class App extends Component {
   toggleTaskStatus = (id) => {
     this.setState(({ tasksData }) => {
       return {
-        tasksData: this.toggleProperty(tasksData, id, "isCompleted"),
+        tasksData: this.toggleProperty(tasksData, id, 'isCompleted'),
       };
     });
   };
@@ -80,11 +77,7 @@ class App extends Component {
     this.setState(({ tasksData }) => {
       const newTask = { ...task, label: newText };
       return {
-        tasksData: [
-          ...tasksData.slice(0, taskIndex),
-          newTask,
-          ...tasksData.slice(taskIndex + 1),
-        ],
+        tasksData: [...tasksData.slice(0, taskIndex), newTask, ...tasksData.slice(taskIndex + 1)],
       };
     });
   };

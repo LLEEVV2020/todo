@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import "./task.css";
-import { formatDistanceToNow } from "date-fns";
+import React, { Component } from 'react';
+import './task.css';
+import { formatDistanceToNow } from 'date-fns';
 
 class Task extends Component {
   constructor(props) {
@@ -14,19 +14,19 @@ class Task extends Component {
 
   /**при нажатии на кнопку редактировать, навешивается класс "editing"*/
   editButtonClickHandler = () => {
-    document.addEventListener("keydown", this.escPressHandler);
+    document.addEventListener('keydown', this.escPressHandler);
     this.setState(() => ({ isEditing: true }));
   };
   escPressHandler = (e) => {
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       this.setState(() => ({ isEditing: false }));
-      document.removeEventListener("keydown", this.escPressHandler);
+      document.removeEventListener('keydown', this.escPressHandler);
     }
   };
 
   inputEnterPressHandler = (e) => {
     const input = e.currentTarget;
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       this.props.onTextChange(this.props.task.id, input.value);
       this.setState(() => ({ isEditing: false }));
     }
@@ -43,8 +43,8 @@ class Task extends Component {
 
     const { id, label, isCompleted, created } = task;
 
-    let classCompleted = isCompleted ? "completed" : "";
-    let classisEditing = this.state.isEditing ? "editing" : "";
+    let classCompleted = isCompleted ? 'completed' : '';
+    let classisEditing = this.state.isEditing ? 'editing' : '';
 
     let inputHandler = this.state.isEditing ? (
       <input
@@ -68,14 +68,9 @@ class Task extends Component {
           />
           <label htmlFor={`toggle-${id}`}>
             <span className="description">{label}</span>
-            <span className="created">
-              created {formatDistanceToNow(created)} ago
-            </span>
+            <span className="created">created {formatDistanceToNow(created)} ago</span>
           </label>
-          <button
-            className="icon icon-edit"
-            onClick={this.editButtonClickHandler}
-          ></button>
+          <button className="icon icon-edit" onClick={this.editButtonClickHandler}></button>
           <button className="icon icon-destroy" onClick={onDeleted}></button>
         </div>
         {inputHandler}

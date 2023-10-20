@@ -1,6 +1,6 @@
-import "./tasks-filter.css";
-import React, { Component } from "react";
-import { Filter } from "../../const";
+import './tasks-filter.css';
+import React, { Component } from 'react';
+import { Filter } from '../../const';
 
 class TasksFilter extends Component {
   filterChangeHandler = (e) => {
@@ -18,7 +18,7 @@ class TasksFilter extends Component {
       <ul className="filters">
         <li>
           <button
-            className={this.props.filter === Filter.All ? "selected" : ""}
+            className={this.props.filter === Filter.All ? 'selected' : ''}
             data-filter={Filter.All}
             onClick={this.filterChangeHandler}
           >
@@ -27,7 +27,7 @@ class TasksFilter extends Component {
         </li>
         <li>
           <button
-            className={this.props.filter === Filter.Active ? "selected" : ""}
+            className={this.props.filter === Filter.Active ? 'selected' : ''}
             data-filter={Filter.Active}
             onClick={this.filterChangeHandler}
           >
@@ -36,7 +36,7 @@ class TasksFilter extends Component {
         </li>
         <li>
           <button
-            className={this.props.filter === Filter.Completed ? "selected" : ""}
+            className={this.props.filter === Filter.Completed ? 'selected' : ''}
             data-filter={Filter.Completed}
             onClick={this.filterChangeHandler}
           >
