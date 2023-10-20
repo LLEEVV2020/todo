@@ -61,9 +61,7 @@ class App extends Component {
 
   toggleProperty(arr, id, propName) {
     const taskIndex = arr.findIndex((el) => el.id === id)
-
     const task = arr[taskIndex]
-
     const newTask = { ...task, [propName]: !task[propName] }
 
     return [...arr.slice(0, taskIndex), newTask, ...arr.slice(taskIndex + 1)]
