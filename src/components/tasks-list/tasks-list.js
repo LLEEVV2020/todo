@@ -15,6 +15,6 @@ const TaskList = ({ tasks, onDeleted, onTaskStatusToggle, onTaskStatusChange }) 
   })
 
   return <ul className="todo-list">{elements}</ul>;
-};
+}
 
 export default TaskList;

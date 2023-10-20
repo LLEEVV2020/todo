@@ -11,6 +11,6 @@ const Header = ({ onTaskAdd }) => {
       <NewTaskForm onTaskAdd={onTaskAdd} />
     </header>
   );
-};
+}
 
 export default Header;

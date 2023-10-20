@@ -13,6 +13,6 @@ const Footer = ({ tasksData, filter, onFilterChange, onClearCompleted }) => {
       </button>
     </footer>
   );
-};
+}
 
 export default Footer;
