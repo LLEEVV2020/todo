@@ -1,17 +1,18 @@
-import './tasks-filter.css';
-import React, { Component } from 'react';
-import { Filter } from '../../const';
+import './tasks-filter.css'
+import React, { Component } from 'react'
+
+import { Filter } from '../../const'
 
 class TasksFilter extends Component {
   filterChangeHandler = (e) => {
-    const filterName = e.currentTarget.dataset.filter;
+    const filterName = e.currentTarget.dataset.filter
     if (filterName === this.props.filter) {
-      return;
+      return
     }
 
-    this.setState(() => ({ filter: filterName }));
-    this.props.onFilterChange(filterName);
-  };
+    this.setState(() => ({ filter: filterName }))
+    this.props.onFilterChange(filterName)
+  }
 
   render() {
     return (
@@ -44,8 +45,8 @@ class TasksFilter extends Component {
           </button>
         </li>
       </ul>
-    );
+    )
   }
 }
 
-export default TasksFilter;
+export default TasksFilter
