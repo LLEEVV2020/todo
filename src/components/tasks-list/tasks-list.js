@@ -12,7 +12,7 @@ const TaskList = ({ tasks, onDeleted, onTaskStatusToggle, onTaskStatusChange }) 
         onTextChange={onTaskStatusChange}
       />
     );
-  });
+  })
 
   return <ul className="todo-list">{elements}</ul>;
 };
