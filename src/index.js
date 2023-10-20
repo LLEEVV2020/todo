@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 
-import App from './components/app';
+import App from './components/app'
 
 const initialTasks = [
   {
@@ -22,11 +22,11 @@ const initialTasks = [
     isCompleted: false,
     created: new Date(2023, 9, 20, 10, 26),
   },
-];
+]
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <App initialTasks={initialTasks} />
   </React.StrictMode>
-);
+)

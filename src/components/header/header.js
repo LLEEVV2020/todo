@@ -1,8 +1,8 @@
-import NewTaskForm from '../new-task-form';
-import './header.css';
+import NewTaskForm from '../new-task-form'
+import './header.css'
 
 const Header = ({ onTaskAdd }) => {
-  const head = <h1>tasks</h1>;
+  const head = <h1>tasks</h1>
 
   return (
     <header className="header">
@@ -10,7 +10,7 @@ const Header = ({ onTaskAdd }) => {
 
       <NewTaskForm onTaskAdd={onTaskAdd} />
     </header>
-  );
+  )
 }
 
-export default Header;
+export default Header
