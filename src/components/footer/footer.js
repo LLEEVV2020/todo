@@ -1,5 +1,5 @@
-import TasksFilter from "../tasks-filter";
-import "./footer.css";
+import TasksFilter from '../tasks-filter'
+import './footer.css'
 
 const Footer = ({ tasksData, filter, onFilterChange, onClearCompleted }) => {
   const uncompletedTasks = tasksData.filter((el) => !el.isCompleted);

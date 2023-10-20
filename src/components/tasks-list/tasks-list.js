@@ -1,12 +1,7 @@
-import Task from "../task";
-import "./tasks-list.css";
+import Task from '../task'
+import './tasks-list.css'
 
-const TaskList = ({
-  tasks,
-  onDeleted,
-  onTaskStatusToggle,
-  onTaskStatusChange,
-}) => {
+const TaskList = ({ tasks, onDeleted, onTaskStatusToggle, onTaskStatusChange }) => {
   const elements = tasks.map((task) => {
     return (
       <Task
@@ -17,7 +12,7 @@ const TaskList = ({
         onTextChange={onTaskStatusChange}
       />
     );
-  });
+  })
 
   return <ul className="todo-list">{elements}</ul>;
 };

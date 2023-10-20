@@ -1,14 +1,14 @@
-import { Component } from "react";
-import "./new-task-form.css";
+import { Component } from 'react'
+import './new-task-form.css'
 
 class NewTaskForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
+      value: '',
       // таким способом можно длбавить стили
       searchStyle: {
-        fontSize: "25px",
+        fontSize: '25px',
       },
     };
   }
@@ -26,9 +26,9 @@ class NewTaskForm extends Component {
         value={this.state.value}
         style={this.state.searchStyle}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === 'Enter') {
             this.props.onTaskAdd(this.state.value);
-            this.changeValue("");
+            this.changeValue('')
           }
         }}
         onChange={(e) => this.changeValue(e.target.value)}
