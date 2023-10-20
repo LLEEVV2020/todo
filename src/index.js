@@ -20,7 +20,7 @@ const initialTasks = [
     id: 2,
     label: "React",
     isCompleted: false,
-    created: new Date(2023, 9, 19, 13, 26),
+    created: new Date(2023, 9, 20, 10, 26),
   },
 ];
 

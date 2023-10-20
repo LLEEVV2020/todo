@@ -17,22 +17,22 @@ class Task extends Component {
     document.addEventListener("keydown", this.escPressHandler);
     this.setState(() => ({ isEditing: true }));
   };
-  escPressHandler = (evt) => {
-    if (evt.key === "Escape") {
+  escPressHandler = (e) => {
+    if (e.key === "Escape") {
       this.setState(() => ({ isEditing: false }));
       document.removeEventListener("keydown", this.escPressHandler);
     }
   };
 
-  inputEnterPressHandler = (evt) => {
-    const input = evt.currentTarget;
-    if (evt.key === "Enter") {
+  inputEnterPressHandler = (e) => {
+    const input = e.currentTarget;
+    if (e.key === "Enter") {
       this.props.onTextChange(this.props.task.id, input.value);
       this.setState(() => ({ isEditing: false }));
     }
   };
-  taskTextChangeHandler = (evt) => {
-    const input = evt.currentTarget;
+  taskTextChangeHandler = (e) => {
+    const input = e.currentTarget;
     this.setState(() => ({ label: input.value }));
   };
 

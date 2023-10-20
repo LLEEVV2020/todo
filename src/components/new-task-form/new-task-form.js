@@ -25,13 +25,13 @@ class NewTaskForm extends Component {
         autoFocus
         value={this.state.value}
         style={this.state.searchStyle}
-        onKeyDown={(evt) => {
-          if (evt.key === "Enter") {
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
             this.props.onTaskAdd(this.state.value);
             this.changeValue("");
           }
         }}
-        onChange={(evt) => this.changeValue(evt.target.value)}
+        onChange={(e) => this.changeValue(e.target.value)}
       />
     );
   }

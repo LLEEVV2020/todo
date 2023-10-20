@@ -3,12 +3,8 @@ import React, { Component } from "react";
 import { Filter } from "../../const";
 
 class TasksFilter extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  filterChangeHandler = (evt) => {
-    const filterName = evt.currentTarget.dataset.filter;
+  filterChangeHandler = (e) => {
+    const filterName = e.currentTarget.dataset.filter;
     if (filterName === this.props.filter) {
       return;
     }
