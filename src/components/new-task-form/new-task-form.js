@@ -27,8 +27,10 @@ class NewTaskForm extends Component {
         style={this.state.searchStyle}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-            this.props.onTaskAdd(this.state.value)
-            this.changeValue('')
+            if (this.state.value.trim() !== '') {
+              this.props.onTaskAdd(this.state.value.trim())
+              this.changeValue('')
+            }
           }
         }}
         onChange={(e) => this.changeValue(e.target.value)}

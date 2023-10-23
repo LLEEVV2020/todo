@@ -27,8 +27,10 @@ class Task extends Component {
   inputEnterPressHandler = (e) => {
     const input = e.currentTarget
     if (e.key === 'Enter') {
-      this.props.onTextChange(this.props.task.id, input.value)
-      this.setState(() => ({ isEditing: false }))
+      if (input.value.trim() !== '') {
+        this.props.onTextChange(this.props.task.id, input.value.trim())
+        this.setState(() => ({ isEditing: false }))
+      }
     }
   }
   taskTextChangeHandler = (e) => {
