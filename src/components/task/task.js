@@ -60,6 +60,7 @@ class Task extends Component {
     ) : null
 
     const time = min * 60 * 1000 + sec * 1000
+
     return (
       <li className={`${classCompleted} ${classisEditing}`}>
         <div className="view">
@@ -71,12 +72,12 @@ class Task extends Component {
             defaultChecked={isCompleted}
           />
           <label htmlFor={`toggle-${id}`}>
-            <span className="description">{label}</span>
+            <span className="title">{label}</span>
             <Timer initialTime={time} />
             <span className="created">created {formatDistanceToNow(created)} ago</span>
           </label>
-          <button className="icon icon-edit" onClick={this.editButtonClickHandler}></button>
-          <button className="icon icon-destroy" onClick={onDeleted}></button>
+          <button className="icon icon-edit position" onClick={this.editButtonClickHandler}></button>
+          <button className="icon icon-destroy position" onClick={onDeleted}></button>
         </div>
         {inputHandler}
       </li>
