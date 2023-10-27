@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './task.css'
 import { formatDistanceToNow } from 'date-fns'
 
+import Timer from '../timer'
 class Task extends Component {
   constructor(props) {
     super(props)
@@ -43,7 +44,7 @@ class Task extends Component {
     // свойство можно передавать любые, строки, буллевые, мыссивы, объекты
     const { task, onDeleted, onTaskStatusToggle } = this.props
 
-    const { id, label, isCompleted, created } = task
+    const { id, label, isCompleted, created, min, sec } = task
 
     let classCompleted = isCompleted ? 'completed' : ''
     let classisEditing = this.state.isEditing ? 'editing' : ''
@@ -58,6 +59,7 @@ class Task extends Component {
       />
     ) : null
 
+    const time = min * 60 * 1000 + sec * 1000
     return (
       <li className={`${classCompleted} ${classisEditing}`}>
         <div className="view">
@@ -70,6 +72,7 @@ class Task extends Component {
           />
           <label htmlFor={`toggle-${id}`}>
             <span className="description">{label}</span>
+            <Timer initialTime={time} />
             <span className="created">created {formatDistanceToNow(created)} ago</span>
           </label>
           <button className="icon icon-edit" onClick={this.editButtonClickHandler}></button>

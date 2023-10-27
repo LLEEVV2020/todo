@@ -18,12 +18,14 @@ class App extends Component {
     }
   }
 
-  createTask(label, isCompleted = false) {
+  createTask(label, isCompleted = false, min = 0, sec = 0) {
     return {
       id: this.minID++,
       label,
       isCompleted: isCompleted,
       created: new Date(),
+      min,
+      sec,
     }
   }
 
