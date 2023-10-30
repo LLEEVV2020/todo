@@ -14,6 +14,7 @@ class Timer extends Component {
   }
 
   playButtonClickHandler = () => {
+    if (this.state.isPause) return
     const id = setInterval(() => {
       this.setState((prevState) => ({
         initialTime: prevState.initialTime + 1000,
@@ -21,11 +22,12 @@ class Timer extends Component {
       //console.log(this.state.initialTime)
     }, 1000)
 
-    this.setState({ timerId: id })
+    this.setState({ timerId: id, isPause: true })
   }
 
   pauseButtonClickHandler = () => {
     clearInterval(this.state.timerId)
+    this.setState({ isPause: false })
   }
 
   render() {
