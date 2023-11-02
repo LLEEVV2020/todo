@@ -1,15 +1,19 @@
-import { Component } from 'react'
+import { Component, useState } from 'react'
 import './new-task-form.css'
+
+function NewTaskForm2({ onTaskAdd }) {
+  const [task, setTask] = useState('')
+  setTask(1)
+  console.log(task)
+  console.log(onTaskAdd)
+}
+console.log(NewTaskForm2)
 
 class NewTaskForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
       value: '',
-      // таким способом можно длбавить стили
-      searchStyle: {
-        fontSize: '25px',
-      },
     }
   }
 
@@ -24,7 +28,6 @@ class NewTaskForm extends Component {
         placeholder="What needs to be done?"
         autoFocus
         value={this.state.value}
-        style={this.state.searchStyle}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             if (this.state.value.trim() !== '') {

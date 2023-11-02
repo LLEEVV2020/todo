@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react' // /**/
 import PropTypes from 'prop-types'
 
 import Header from '../header'
@@ -7,20 +7,15 @@ import Footer from '../footer'
 import './app.css'
 import { Filter } from '../../const'
 
-class App extends Component {
-  minID = 100
-  constructor(props) {
-    super(props)
+function App({ initialTasks }) {
+  const [tasksData, setTasksData] = useState(initialTasks)
+  const [filter, setFilter] = useState(Filter.All)
 
-    this.state = {
-      tasksData: this.props.initialTasks,
-      filter: this.props.filter,
-    }
-  }
+  let minID = 100
 
-  createTask(label, isCompleted = false, min = 0, sec = 0) {
+  function createTask(label, isCompleted = false, min = 0, sec = 0) {
     return {
-      id: this.minID++,
+      id: minID++,
       label,
       isCompleted: isCompleted,
       created: new Date(),
@@ -29,22 +24,18 @@ class App extends Component {
     }
   }
 
-  deleteTask = (id) => {
-    this.setState(({ tasksData }) => {
+  function deleteTask(id) {
+    setTasksData((tasksData) => {
       const idx = tasksData.findIndex((el) => el.id === id)
 
-      const newArray = [...tasksData.slice(0, idx), ...tasksData.slice(idx + 1)]
-
-      return {
-        tasksData: newArray,
-      }
+      return [...tasksData.slice(0, idx), ...tasksData.slice(idx + 1)]
     })
   }
 
-  addTask = (text) => {
-    const newTask = this.createTask(text)
+  function addTask(text) {
+    const newTask = createTask(text)
 
-    this.setState(({ tasksData }) => {
+    setTasksData((tasksData) => {
       const newArray = [...tasksData, newTask]
 
       return {
@@ -53,15 +44,15 @@ class App extends Component {
     })
   }
 
-  toggleTaskStatus = (id) => {
-    this.setState(({ tasksData }) => {
+  function toggleTaskStatus(id) {
+    setTasksData((tasksData) => {
       return {
-        tasksData: this.toggleProperty(tasksData, id, 'isCompleted'),
+        tasksData: toggleProperty(tasksData, id, 'isCompleted'),
       }
     })
   }
 
-  toggleProperty(arr, id, propName) {
+  function toggleProperty(arr, id, propName) {
     const taskIndex = arr.findIndex((el) => el.id === id)
     const task = arr[taskIndex]
     const newTask = { ...task, [propName]: !task[propName] }
@@ -69,68 +60,60 @@ class App extends Component {
     return [...arr.slice(0, taskIndex), newTask, ...arr.slice(taskIndex + 1)]
   }
 
-  changeTaskText = (id, newText) => {
-    const taskIndex = this.state.tasksData.findIndex((el) => el.id === id)
-    const task = this.state.tasksData[taskIndex]
+  function changeTaskText(id, newText) {
+    const taskIndex = tasksData.findIndex((el) => el.id === id)
+    const task = tasksData[taskIndex]
     if (!task) throw new Error()
 
-    this.setState(({ tasksData }) => {
+    setTasksData((prevTasks) => {
       const newTask = { ...task, label: newText }
-      return {
-        tasksData: [...tasksData.slice(0, taskIndex), newTask, ...tasksData.slice(taskIndex + 1)],
-      }
+      return [...prevTasks.slice(0, taskIndex), newTask, ...prevTasks.slice(taskIndex + 1)]
     })
   }
 
-  changeFilter = (filterName) => {
-    this.setState(() => ({ filter: filterName }))
+  function changeFilter(filterName) {
+    setFilter(filterName)
   }
 
-  getFilteredTasks() {
-    switch (this.state.filter) {
+  function getFilteredTasks() {
+    switch (filter) {
       case Filter.All:
-        return this.state.tasksData
+        return tasksData
       case Filter.Active:
-        return this.state.tasksData.filter((task) => !task.isCompleted)
+        return setTasksData.filter((task) => !task.isCompleted)
       case Filter.Completed:
-        return this.state.tasksData.filter((task) => task.isCompleted)
+        return setTasksData.filter((task) => task.isCompleted)
       default:
-        return this.state.tasksData
+        return tasksData
     }
   }
-  removeCompletedTasks = () => {
-    this.setState(({ tasksData }) => {
-      return {
-        tasksData: tasksData.filter((el) => !el.isCompleted),
-      }
+  function removeCompletedTasks() {
+    setTasksData((tasksData) => {
+      return tasksData.filter((el) => !el.isCompleted)
     })
   }
+  const filteredTasks = getFilteredTasks()
 
-  render() {
-    const filteredTasks = this.getFilteredTasks()
-
-    return (
-      <section className="todoapp">
-        <Header onTaskAdd={this.addTask} />
-        <section className="main">
-          <TaskList
-            tasks={filteredTasks}
-            onDeleted={this.deleteTask}
-            onTaskStatusToggle={this.toggleTaskStatus}
-            onTaskStatusChange={this.changeTaskText}
-          />
-          <Footer
-            tasksData={this.state.tasksData}
-            onFilterChange={this.changeFilter}
-            filter={this.state.filter}
-            onClearCompleted={this.removeCompletedTasks}
-          />
-        </section>
+  return (
+    <section className="todoapp">
+      <Header onTaskAdd={addTask} />
+      <section className="main">
+        <TaskList
+          tasks={filteredTasks}
+          onDeleted={deleteTask}
+          onTaskStatusToggle={toggleTaskStatus}
+          onTaskStatusChange={changeTaskText}
+        />
+        <Footer
+          tasksData={tasksData}
+          onFilterChange={changeFilter}
+          filter={filter}
+          onClearCompleted={removeCompletedTasks}
+        />
       </section>
-    )
-  }
+    </section>
+  )
 }
-
 App.defaultProps = {
   initialTasks: [],
   filter: Filter.All,
