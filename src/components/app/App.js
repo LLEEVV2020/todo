@@ -10,12 +10,13 @@ import { Filter } from '../../const'
 function App({ initialTasks }) {
   const [tasksData, setTasksData] = useState(initialTasks)
   const [filter, setFilter] = useState(Filter.All)
-
-  let minID = 100
+  const [counter, setCounter] = useState(10)
 
   function createTask(label, isCompleted = false, min = 0, sec = 0) {
+    setCounter(counter + 1)
+
     return {
-      id: minID++,
+      id: counter,
       label,
       isCompleted: isCompleted,
       created: new Date(),
@@ -38,17 +39,13 @@ function App({ initialTasks }) {
     setTasksData((tasksData) => {
       const newArray = [...tasksData, newTask]
 
-      return {
-        tasksData: newArray,
-      }
+      return newArray
     })
   }
 
   function toggleTaskStatus(id) {
     setTasksData((tasksData) => {
-      return {
-        tasksData: toggleProperty(tasksData, id, 'isCompleted'),
-      }
+      return toggleProperty(tasksData, id, 'isCompleted')
     })
   }
 
@@ -61,11 +58,11 @@ function App({ initialTasks }) {
   }
 
   function changeTaskText(id, newText) {
-    const taskIndex = tasksData.findIndex((el) => el.id === id)
-    const task = tasksData[taskIndex]
-    if (!task) throw new Error()
-
     setTasksData((prevTasks) => {
+      const taskIndex = prevTasks.findIndex((el) => el.id === id)
+      const task = prevTasks[taskIndex]
+      if (!task) throw new Error()
+
       const newTask = { ...task, label: newText }
       return [...prevTasks.slice(0, taskIndex), newTask, ...prevTasks.slice(taskIndex + 1)]
     })
@@ -80,9 +77,9 @@ function App({ initialTasks }) {
       case Filter.All:
         return tasksData
       case Filter.Active:
-        return setTasksData.filter((task) => !task.isCompleted)
+        return tasksData.filter((task) => !task.isCompleted)
       case Filter.Completed:
-        return setTasksData.filter((task) => task.isCompleted)
+        return tasksData.filter((task) => task.isCompleted)
       default:
         return tasksData
     }

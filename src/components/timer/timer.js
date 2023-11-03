@@ -1,51 +1,40 @@
 import moment from 'moment'
-import { Component } from 'react'
+import { useState } from 'react'
 import './timer.css'
 
-class Timer extends Component {
-  constructor(props) {
-    super(props)
+function Timer({ initialTime }) {
+  const [timerId, setTimerId] = useState(null)
+  const [totalTime, setTotalTime] = useState(initialTime)
+  const [isPause, setPause] = useState(false)
 
-    this.state = {
-      initialTime: this.props.initialTime,
-      timerId: null,
-      isPause: false,
-    }
-  }
-
-  playButtonClickHandler = () => {
-    if (this.state.isPause) return
+  function playButtonClickHandler() {
+    if (timerId && !isPause) return
     const id = setInterval(() => {
-      this.setState((prevState) => ({
-        initialTime: prevState.initialTime + 1000,
-      }))
-      //console.log(this.state.initialTime)
+      setTotalTime((prevValue) => {
+        return prevValue + 1000
+      })
     }, 1000)
 
-    this.setState({ timerId: id, isPause: true })
+    setTimerId(id)
   }
 
-  pauseButtonClickHandler = () => {
-    clearInterval(this.state.timerId)
-    this.setState({ isPause: false })
+  function pauseButtonClickHandler() {
+    clearInterval(timerId)
+    setPause(false)
   }
 
-  render() {
-    const { initialTime } = this.state
+  const formattedTime =
+    moment.duration(totalTime).asHours() >= 1
+      ? moment.utc(totalTime).format('HH:mm:ss')
+      : moment.utc(totalTime).format('mm:ss')
 
-    let formattedTime =
-      moment.duration(initialTime).asHours() >= 1
-        ? moment.utc(initialTime).format('HH:mm:ss')
-        : moment.utc(initialTime).format('mm:ss')
-
-    return (
-      <span className="description">
-        <button className="icon icon-play" onClick={this.playButtonClickHandler}></button>
-        <button className="icon icon-pause" onClick={this.pauseButtonClickHandler}></button>
-        {formattedTime}
-      </span>
-    )
-  }
+  return (
+    <span className="description">
+      <button className="icon icon-play" onClick={playButtonClickHandler}></button>
+      <button className="icon icon-pause" onClick={pauseButtonClickHandler}></button>
+      {formattedTime}
+    </span>
+  )
 }
 
 export default Timer

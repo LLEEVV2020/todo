@@ -1,45 +1,29 @@
-import { Component, useState } from 'react'
+import { useState } from 'react'
 import './new-task-form.css'
 
-function NewTaskForm2({ onTaskAdd }) {
-  const [task, setTask] = useState('')
-  setTask(1)
-  console.log(task)
-  console.log(onTaskAdd)
-}
-console.log(NewTaskForm2)
+function NewTaskForm({ onTaskAdd }) {
+  const [value, setValue] = useState('')
 
-class NewTaskForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: '',
-    }
+  function changeValue(newValue) {
+    setValue(newValue)
   }
-
-  changeValue(newValue) {
-    this.setState({ value: newValue })
-  }
-
-  render() {
-    return (
-      <input
-        className="new-todo"
-        placeholder="What needs to be done?"
-        autoFocus
-        value={this.state.value}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            if (this.state.value.trim() !== '') {
-              this.props.onTaskAdd(this.state.value.trim())
-              this.changeValue('')
-            }
+  return (
+    <input
+      className="new-todo"
+      placeholder="What needs to be done?"
+      autoFocus
+      value={value}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          if (value.trim() !== '') {
+            onTaskAdd(value.trim())
+            changeValue('')
           }
-        }}
-        onChange={(e) => this.changeValue(e.target.value)}
-      />
-    )
-  }
+        }
+      }}
+      onChange={(e) => changeValue(e.target.value)}
+    />
+  )
 }
 
 export default NewTaskForm
