@@ -20,5 +20,5 @@ npm  run lint
 npm  run lint:fix
 npm  run format
 
-
+npm start
 npm  run build
